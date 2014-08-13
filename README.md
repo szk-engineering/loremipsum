@@ -14,7 +14,7 @@ LoremIpsum
 ### Register your SSH key
 アカウントを作ったら，公開鍵を登録します．
 
-ローカル環境の~/.ssh/configも変更しておくのをわすれずに．
+ローカル環境の~/.ssh/configもこんな感じで変更しておくと良いかも．
 
 ```shell
 Host github-private
@@ -27,7 +27,11 @@ Host github-private
 ```
 
 ## Make own repository
-自分のアカウントでレポジトリを作ってみる．恥ずかしかったら非公開でもOK．
+自分のアカウントでレポジトリを作ってみる．
+
+```shell
+$ git init
+```
 
 ## Watch someone's repository
 誰かのレポジトリをwatchして，どんな風に使ってみるか見てみる．
@@ -39,8 +43,15 @@ Host github-private
 $ git clone <url>
 ```
 
+URLは各レポジトリ画面の右下にある．
+gitやhttps，sshなど様々なプロトコルを選べるけど，基本的にどれでもいい．
+その下にある"Clone in Desktop"はGitHub謹製のGUIアプリ経由で使う場合．
+"Download ZIP"はgit cloneでなく，単にファイルとして欲しい時(gitをインストールしてない環境で，とりあえず見てみたい時など)に使う．
+
 ## Push your modification
 ローカルで加えた変更点をリモートのレポジトリに反映してみる．
+
+(何らかの変更) → add(to working tree) → → commit(to index) → push(to remote repository) の順．
 
 ### Change something
 なんでも良いから書き換えてみる．revert(元に戻す)できるのがGitの良いところなので，失敗を恐れずに．
@@ -53,8 +64,11 @@ README.md(Markdown)ファイルをいじるのにおすすめの環境は…
   - OmniMarkupPreview
   - Theme: AfterGlow
 
+SublimeTextはConvertToUTF8など，入れるべきプラグインが幾つかあるけど，ここでは割愛．
+
 #### GitHub Flavored Markdown
 GitHubで使えるMarkdown特殊記法も使いこなせるとかっこいい．
+checkboxとか．この辺を参照．
 
 https://help.github.com/articles/github-flavored-markdown
 
@@ -66,8 +80,10 @@ Gitでは変更点を追跡するかどうか，add/rmしながら使う．
 $ git add .
 ```
 
+追跡中のファイルたちを*working tree*って言ったりする．
+
 #### gitignore
-とは言え，追跡してもしょうがないlogファイルとか不可視ファイルもあるので，ignore(無視)設定しておくと良い．
+全部追跡とは言え，追跡してもしょうがないlogファイルとか不可視ファイルもあるので，ignore(無視)設定しておくと良い．
 
 MacOSXだったら，下記はdefaultかな．
 ```shell
@@ -93,7 +109,15 @@ Temporary Items
 
 #### gitconfig
 gitignoreの話をしたので，ついでにgitconfigも．
-~/.gitconfigにこんな感じに書くと捗る．
+
+CUIから追記するには…
+```shell
+$ git config --global user.name <username>
+$ git config --global user.email <email>
+
+```
+
+~/.gitconfigに直接書いてもOK．
 
 ```shell
 [user]
@@ -106,13 +130,14 @@ gitignoreの話をしたので，ついでにgitconfigも．
   ci = commit
   st = status
   br = branch
+  graph = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit --date=relative
   hist = log --pretty=format:\"%h %ad | %s%d [%an]\" --graph --date=short
 [core]
   excludesfile = ~/.gitignore
 ```
 
 ### Commit!
-変更追跡するファイルを追加したら，実際に変更点をまとめる．
+変更追跡するファイルを追加したら，実際に変更点をまとめて*index*に追加する．
 
 ```shell
 $ git commit -m "<comment>"
@@ -182,16 +207,65 @@ branchを切った後や，または他の人の変更点と範囲が重なる�
 
 ## その他のよく使うGitコマンド
 
+### mv /rm
+Gitを使っていてちょっと面倒なのが，ファイル名の変更や削除．
+OSのファイラからいじるとworking treeに残ったままになったりするので，Gitのコマンドから変更(移動)/削除するのがbetter．
+
+```shell
+$ git mv <src_filename> <dst_filename>
+$ git mv <filename>
+```
+
+うっかりworking treeに残ったファイルをどうにかしたいときはcleanする．
+
+```shell
+$ git clean -f
+```
+"-f"で強制的にcleanしてしまうので，それが怖い場合には"-n"でcleanされるファイルを確認してから行うと良い．
+
+### diff
+差分を表示するときに使う．
+
+たとえば，ファイルの差分を表示するときは…
+
+```shell
+$ git diff <filename>
+```
+
+よく使うのは，commitしてないworking treeとの差分．
+```shell
+$ git diff --cached
+```
+
 ### status
-// TODO: あとでゆっくり書く
+working treeの状態を表示する．
+
+```shell
+$ git status
+```
 
 ### log
-// TODO: あとでゆっくり書く
+commitのログを表示する．
 
-#### graph
-// TODO: あとでゆっくり書く
+```shell
+$ git log
+```
 
-### // TODO: あとでゆっくり書く
+### shortlog
+logより要約度の高いlog．
+
+```shell
+$ git shortlog
+```
+
+#### log --graph
+logのオプションで，ちょっと綺麗な履歴表示が可能．
+
+```shell
+$ git log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit --date=relative
+```
+
+もちろん，いちいちこんなに長く打ってられないので，gitconfigにaliasを書いておくと吉．
 
 ## Learn flow
 ここまででGitの基本的なコマンドは習得したので，これらを実践的に組み合わせてみる．
