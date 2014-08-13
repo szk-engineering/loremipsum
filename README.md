@@ -64,7 +64,7 @@ README.md(Markdown)ファイルをいじるのにおすすめの環境は…
   - OmniMarkupPreview
   - Theme: AfterGlow
 
-SublimeTextはConvertToUTF8など，入れるべきプラグインが幾つかあるけど，ここでは割愛．
+SublimeTextはConvertToUTF8やGitGutterなど，入れるべきプラグインが幾つかあるけど，ここでは割愛．
 
 #### GitHub Flavored Markdown
 GitHubで使えるMarkdown特殊記法も使いこなせるとかっこいい．
@@ -301,6 +301,50 @@ $ git log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgree
 
 もちろん，いちいちこんなに長く打ってられないので，gitconfigにaliasを書いておくと吉．
 
+#### git now
+簡単にcommitするための，"git add ."と"git commit -m <日付>"を同時に行うコマンド．
+MacOSX + HomeBrew環境なら下記でインストールできる．
+
+```shell
+$ brew install --zsh-completion git-now
+```
+
+インストールが終わったら，git nowするだけ．コメントに日時と差分が纏まってcommitされる．
+
+```shell
+$ git now
+$ git log
+commit e3d45f97a5a1faf87a2fb3bf491dd5ea0f1644c9
+Author: Shin'ichiro SUZUKI <shin@szk-engineering.com>
+Date:   Wed Aug 13 11:36:26 2014 -0700
+
+    [from now] 2014/08/13 11:36:26
+
+    diff --git a/gitconfig b/gitconfig
+    index cb6889a..24146ca 100644
+    --- a/gitconfig
+    +++ b/gitconfig
+    @@ -3,11 +3,16 @@
+       email = shin@szk-engineering.com
+     [alias]
+       graph = log --graph --date-order -C -M --pretty=format:\"<%h> %ad [%an] %Cgreen%d%Creset %s\" --all --date=short
+    -  log = log --stat
+    +  sl = shortlog
+    +  sh = show
+       st = status
+        co = checkout
+    +  rbm = rebase master
+    +  gr = grep
+    +  dw = diff --color-words
+     [color]
+        ui = true
+     [core]
+        editor = vim
+    -
+    +[push]
+    +  default = tracking
+```
+
 ## Learn flow
 ここまででGitの基本的なコマンドは習得したので，これらを実践的に組み合わせてみる．
 
@@ -350,11 +394,11 @@ Git Flowは大げさすぎるので，GitHubを使ってGit Flowっぽいこと�
 ### szk-engineering's Flow: ポリシー
 
 * *master*には直接変更を加えない(= *Git Flow*と一緒)
-  - 変更前にbranchを切って，完成したら*Pull Request*(後述する)を送る
+  - 変更前にbranchを切って，完成(= テストが通る)したら*Pull Request*(後述する)を送る
   - *Pull Request*を受けたら，mergeする前にコードレビューする
 * *master*は完動する状態を保つ(= *Git Flow*と一緒)
   - *master*はいつでも本番環境にdeployして良いようにしておく
-* 各branchへのcommitもテストを通ったものしか許さない(= *Git Flow*と一緒)
+* branch切ったらcommitは適当でOK．
 
 ### szk-engineering's Flow: branchの分け方
 
@@ -394,14 +438,40 @@ Requestの相手(通常はレポジトリの管理者)と変更した内容を�
 GitHubが使えるようになったら，GitHubの周辺にも手を出してみよう．
 
 ### Travis CI
-// TODO: あとでゆっくり書く
+https://travis-ci.org
+
+CI(Continuous Integration; 継続的インテグレーション)を支援して，要するに，なるべく自動化して品質改善や納期短縮を効率よくやりましょうってサービス．
+Publicなレポジトリなら，*.travis.yml*というファイルを置くだけで使える．
+
+自前で同じようなサービスを用意するなら*Jenkins*が有名．
+
+CIについては別途Lectureしましょう:)
 
 ### Heroku
-// TODO: あとでゆっくり書く
+https://www.heroku.com
+
+読み方は「へろく」．RubyやらPythonやらをpushするだけで動かしてくれるPaaS．
+小規模なら無料だし，たくさんあるAdd-Inが便利なので，まず動かしてみたいときに使う．
 
 ### Gitter
+GitHub謹製のチャットサービス．
+Markdownで発言できたり，特定のレポジトリやOrganizationでチャットルームを作れたりする．
+
+ということで，作ってみました．
 https://gitter.im/szk-engineering
-// TODO: あとでゆっくり書く
 
 ### Hubot
-// TODO: あとでゆっくり書く
+GitHub謹製の人工無能(?)．いや，かなり有能かも．
+
+* 発言に含まれるURLのタイトルを表示
+* TwitterのURLから発言内容を表示
+* ミーティング時間の通知
+* サーバの負荷が上がった場合に通知
+* GitHubのリポジトリにpull requestが送られた場合に通知
+* Jenkinsでのビルドの失敗時にエラーを通知
+* デプロイの実行
+
+HipChatと連携させるよう，そのうちHeroku上にセットアップしておきます．
+
+# Remarks
+間違いとかあったら教えてください．
