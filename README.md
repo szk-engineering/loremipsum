@@ -199,11 +199,45 @@ $ git checkout
 その後，うまく行った場合には後述するmarge作業をして，本流に反映する．
 
 ## Marge modifications
-branchを切った後や，または他の人の変更点と範囲が重なる変更をした場合，marge(統合)してあげなければいけない．
+branchを切った後や，または他の人の変更点と範囲が重なる変更をした場合，marge(統合)が発生する．たいていは自動で統合してくれるけど，Conflict(衝突)すると，結構めんどう．
 
-// TODO: あとでゆっくり書く
+特に後者「他の人の変更点と範囲が重なる変更」での衝突はpushする前にこまめにpullするだけで省けるのでこまめにpullする習慣をつけよう．
 
-特に後者「他の人の変更点と範囲が重なる変更」はpushする前にこまめにpullしたりするだけで省けたりするので習慣化推奨．
+Conflictした例を紹介する．
+
+```shell
+$ git merge hoge
+Auto-merging index.html
+CONFLICT (content): Merge conflict in index.html
+Automatic merge failed; fix conflicts and then commit the result.
+```
+
+何やらindex.htmlでうまくmergeができなかったらしい．
+
+index.htmlを開いてみると，こんな風になっている場所があるはず．
+
+```html
+<<<<<<< HEAD
+<div id="footer">contact : email.support@github.com</div>
+=======
+<div id="footer">
+  please contact us at support@github.com
+</div>
+>>>>>>> hoge
+```
+
+HEADとhogeで違う記述をしている箇所があるので，どっちが正しいか判断して修正する．修正する際には記号の行も削除．
+
+```html
+<div id="footer">
+  please contact us at support@github.com
+</div>
+```
+
+修正後にadd→commitすればOK．
+
+最初のうちはmerge手順がわからなかったり，どちらが正しいか判断がつかなかったりするのでレポジトリの管理者に相談しながら進めてOK．
+
 
 ## その他のよく使うGitコマンド
 
@@ -285,40 +319,76 @@ git-flowという「こうやるとうまくいくよ」という手法がある
 
 #### Git Flow: branchの分け方
 
+* master
+  - 大元締め，常に配備可能なバグのないbranch，開発者は直接さわってはいけない
+* develop
+  - 開発するためのbranch，ここからfeatureを切り分ける
 * feature
+  - 直訳すれば"機能"，developからbranchして，ある一つの機能を実装するために使う
+* release
+  - featureが何個かまとまって，release(公開)するためにドキュメントの整備などを行うbranch
 * hotfix
-* // TODO: あとでゆっくり書く
+  - 発見された不具合を修正するために切るbranch，たいていはmasterから切り出す
 
 #### Git Flow: 利点
 
-commitログがすっきりして変更履歴を追いやすい．
-branchごとに担当者が分けやすくて管理しやすい．
-branchごとに何をしなければいけないか明確化されてて作業しやすい．
-masterはいつでも動くという安心感．
+* commitログがすっきりして変更履歴を追いやすい
+* branchごとに担当者が分けやすくて管理しやすい
+* branchごとに何をしなければいけないか明確化されてて作業しやすい
+* masterはいつでも動くという安心感
 
 #### Git Flow: 注意点
 
-変更履歴は追いやすくなるけど，進行中の作業は追いにくい．
-branch切ったりmargeしたりする回数が増えて，正直めんどい．
-テストを自動化しておかないと回せない．
-小規模な開発や実験的な開発で適応するといちいちcommitしにくくて困る．
-「マスター，…返事がない，ただの屍のようだ」
+* 変更履歴は追いやすいけど，進行中の作業は追いにくい
+* branch切ったりmargeしたりする回数が増えて，正直めんどい
+* テストを自動化しておかないと回せない
+* 小規模な開発や実験的な開発で適応するといちいちcommitしにくくて困る
 
 ### GitHub Flow and szk-engineering's Flow
-GitHubを使ってGit Flowっぽいことをやろう，っていうか，更にそれを改良して，szk-engineering流はこんな感じだよ．
+Git Flowは大げさすぎるので，GitHubを使ってGit Flowっぽいことをもうちょっと楽にやろう，っていうか，更にそれを改良して，szk-engineering流はこんな感じだよ．
 
 ### szk-engineering's Flow: ポリシー
-* // TODO: あとでゆっくり書く
+
+* *master*には直接変更を加えない(= *Git Flow*と一緒)
+  - 変更前にbranchを切って，完成したら*Pull Request*(後述する)を送る
+  - *Pull Request*を受けたら，mergeする前にコードレビューする
+* *master*は完動する状態を保つ(= *Git Flow*と一緒)
+  - *master*はいつでも本番環境にdeployして良いようにしておく
+* 各branchへのcommitもテストを通ったものしか許さない(= *Git Flow*と一緒)
 
 ### szk-engineering's Flow: branchの分け方
-* // TODO: あとでゆっくり書く
 
-### szk-engineering's Flow: 注意点
-* // TODO: あとでゆっくり書く
+* master
+  - 大元締め，常に配備可能なバグのないbranch，開発者は直接さわってはいけない(= *Git Flow*と一緒)
+* feature
+  - 開発するためのbranch，1機能ずつ切り出す
+  - *Git Flow*とちがって，masterから切り出す(= developは作らない)
+* hotfix
+  - 修正するためのbranch，1バグずつ切り出す
+  - masterから切り出す
 
-## Make Pull-Request
-GitHubの肝．
-// TODO: あとでゆっくり書く
+developやreleaseを作らずに簡素化．
+
+### szk-engineering's Flow: 実際の流れ
+
+1. レポジトリをcloneする
+1. 開発する機能を決める(ex. submitボタンを付ける)
+1. わかりやすい名前でbranchを切る(ex. feature_make_submit_button)
+  - 機能なら"feature"，修正なら"hotfix"を付けて，アンダースコアでつないだ簡単な英文
+1. 開発する
+1. 開発が終わって，テストも通ることを確認する
+1. commitする
+1. pushする
+1. Pull Requestを送る
+  - Pull Requestを受け取った管理者はコードレビューしてmerge，問題なかったらbranchを削除
+1. 次の開発(or 修正)へ…
+
+## Make Pull Request
+GitHubの肝．とは言え，forkしないPull Requestは簡単．
+
+GitHubのレポジトリの画面でbranchを切り替えて表示すると右上に"Pull Request"というボタンが出てくる．
+
+Requestの相手(通常はレポジトリの管理者)と変更した内容を書いて送信．
 
 ## Try surrounding services
 GitHubが使えるようになったら，GitHubの周辺にも手を出してみよう．
@@ -335,5 +405,3 @@ https://gitter.im/szk-engineering
 
 ### Hubot
 // TODO: あとでゆっくり書く
-
-#140812 馬場、確認しました
