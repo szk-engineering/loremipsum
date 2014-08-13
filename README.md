@@ -1,7 +1,7 @@
 LoremIpsum
 ==========
 
-> LastModified: 2014-08-10
+> LastModified: 2014-08-13
 
 [TOC]
 
@@ -335,3 +335,5 @@ https://gitter.im/szk-engineering
 
 ### Hubot
 // TODO: あとでゆっくり書く
+
+#140812 馬場、確認しました
