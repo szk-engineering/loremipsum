@@ -101,13 +101,17 @@ $ sudo gem install bundler
 
 無事にインストールできたかな？
 
-# make a Web application with Sinatra
+# Make a Web application with Sinatra
+
+// TODO: write details about make
 
 ```shell
 $ bundle install --path vendor/bundle --without production
 ```
 
 # Run!
+
+// TODO: write details about run
 
 ```shell
 $ sudo gem install foreman
@@ -116,3 +120,21 @@ $ sudo gem install foreman
 ```shell
 $ foreman start
 ```
+
+# Deploy to Heroku
+
+// TODO: write details about deploy
+
+> heroku create
+
+# Test
+
+// TODO: write details about test
+
+# Make a feature
+
+// TODO: write details about feature
+
+# Cycle
+
+// TODO: write details about cycle

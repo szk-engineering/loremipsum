@@ -5,6 +5,7 @@ source "http://rubygems.org/"
 
 # Sinatra
 gem "sinatra"
+gem 'sinatra-contrib'
 
 # Unicorn
 gem 'unicorn'
