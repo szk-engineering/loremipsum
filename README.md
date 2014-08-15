@@ -1,10 +1,9 @@
 LoremIpsum
 ==========
 
-[![Build Status](https://secure.travis-ci.org/szk-engineering/loremipsum.png?branch=master](https://travis-ci.org/szk-engineering/loremipsum)
+[![Build Status](https://travis-ci.org/szk-engineering/loremipsum.svg?branch=master)](https://travis-ci.org/szk-engineering/loremipsum)
 
-
-> LastModified: 2014-08-13
+> LastModified: 2014-08-14
 
 [TOC]
 
