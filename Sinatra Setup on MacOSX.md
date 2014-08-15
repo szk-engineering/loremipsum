@@ -123,6 +123,10 @@ $ foreman start
 
 # Deploy to Heroku
 
+```shell
+$ brew install heroku-toolbelt
+```
+
 // TODO: write details about deploy
 
 > heroku create
