@@ -3,4 +3,11 @@ language: ruby
 rvm:
 - 2.0.0
 
-script: bundle exec rspec
+script:
+  - bundle exec rspec
+
+notifications:
+  email:
+    - shin@szk-engineering.com
+    - kouhei@szk-engineering.com
+  hipchat: Y5ychrjsKVgGzSvZLXEHloMWO0adyjL2UuXqBI3A@Szk-engineering
