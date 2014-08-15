@@ -1,2 +1,7 @@
 require './main.rb'
-run MainApp.new
+require 'rubygems'
+require 'bundler'
+
+Bundler.require
+
+run Sinatra::Application
