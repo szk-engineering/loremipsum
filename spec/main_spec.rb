@@ -10,12 +10,8 @@ describe "App" do
   describe "レスポンスの精査" do
     describe "/へのアクセス" do
       before { get '/' }
-      subject { last_response }
       it "正常なレスポンスが返ること" do
-        should be_ok
-      end
-      it "helloと出力されること" do
-        expect(subject.body).to eq "hello"
+        expect(last_response).to be_ok
       end
     end
   end

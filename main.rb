@@ -5,6 +5,5 @@ require 'sinatra/reloader' if development?
 
 get '/' do
   @text = 'hello'
-  @text
-  #erb :index
+  erb :index
 end
