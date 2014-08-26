@@ -60,6 +60,8 @@ gitやhttps，sshなど様々なプロトコルを選べるけど，基本的に
 #### Markdown environment
 README.md(Markdown)ファイルをいじるのにおすすめの環境は…
 
+cf. http://bellonieta.net/2014/08/markdown環境を刷新してみた/
+
 * Sublime Text 3
   - OmniMarkupPreview
   - Theme: AfterGlow
