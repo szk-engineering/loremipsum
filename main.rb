@@ -4,7 +4,7 @@ require 'sinatra'
 require 'sinatra/reloader' if development?
 
 get '/' do
-  @text = 'hello world!’
+  @text = 'hello world!'
   erb :index
 end
 
