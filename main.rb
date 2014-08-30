@@ -7,3 +7,4 @@ get '/' do
   @text = 'hello world!’
   erb :index
 end
+
