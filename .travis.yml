@@ -12,6 +12,5 @@ notifications:
   email:
     - shin@szk-engineering.com
     - kouhei@szk-engineering.com
-  hipchat: Y5ychrjsKVgGzSvZLXEHloMWO0adyjL2UuXqBI3A@Szk-engineering
   webhooks:
-    - https://idobata.io/hook/travis_ci/f5a276a6-8bd9-48b1-baa0-37224082abc2
+    - https://idobata.io/hook/travis_ci/69f1f6cd-2777-4794-b5d8-2a4d4216c7f6
