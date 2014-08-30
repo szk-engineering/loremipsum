@@ -1,7 +1,7 @@
 sinatra setup on MacOSX
 ========
 
-> LastModified: 2014-08-13
+> LastModified: 2014-08-31
 
 [TOC]
 
