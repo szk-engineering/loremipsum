@@ -1,10 +1,7 @@
 LoremIpsum
 ==========
 
-> LastModified: 2014-08-30 [![Build Status](https://travis-ci.org/szk-engineering/loremipsum.svg?branch=master)](https://travis-ci.org/szk-engineering/loremipsum)
-
-> Join! yuki@szk-engineering.com
-> Welcome!!
+> LastModified: 2017-03-28 [![Build Status](https://travis-ci.org/szk-engineering/loremipsum.svg?branch=master)](https://travis-ci.org/szk-engineering/loremipsum)
 
 [TOC]
 
