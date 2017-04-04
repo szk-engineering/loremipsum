@@ -3,8 +3,6 @@ LoremIpsum
 
 > LastModified: 2017-03-28 [![Build Status](https://travis-ci.org/szk-engineering/loremipsum.svg?branch=master)](https://travis-ci.org/szk-engineering/loremipsum)
 
-<!-- TOC depthFrom:1 depthTo:6 withLinks:1 updateOnSave:1 orderedList:0 -->
-
 - [GitHub Lecture for szk-engineering](#github-lecture-for-szk-engineering)
 	- [Make GitHub Account](#make-github-account)
 		- [Register your SSH key](#register-your-ssh-key)
@@ -50,8 +48,6 @@ LoremIpsum
 		- [Gitter](#gitter)
 		- [Hubot](#hubot)
 - [Remarks](#remarks)
-
-<!-- /TOC -->
 
 # GitHub Lecture for szk-engineering
 社内研修用．
