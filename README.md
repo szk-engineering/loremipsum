@@ -4,7 +4,7 @@ LoremIpsum (GitHub Lecture for szk-engineering)
 
 GitとGitHubのさわりだけ。
 
-> LastModified: 2017-03-28 [![Build Status](https://travis-ci.org/szk-engineering/loremipsum.svg?branch=master)](https://travis-ci.org/szk-engineering/loremipsum)
+> LastModified: 2017-11-16 [![Build Status](https://travis-ci.org/szk-engineering/loremipsum.svg?branch=master)](https://travis-ci.org/szk-engineering/loremipsum)
 
 <!-- TOC depthFrom:2 depthTo:6 withLinks:1 updateOnSave:1 orderedList:0 -->
 
@@ -18,8 +18,8 @@ GitとGitHubのさわりだけ。
 		- [Markdown environment](#markdown-environment)
 		- [GitHub Flavored Markdown](#github-flavored-markdown)
 	- ["Add" your modification](#add-your-modification)
-		- [gitignore](#gitignore)
-		- [gitconfig](#gitconfig)
+		- [.gitignore](#gitignore)
+		- [.gitconfig](#gitconfig)
 	- [Commit!](#commit)
 	- [Push your modification](#push-your-modification)
 		- [Add remote repository](#add-remote-repository)
@@ -80,6 +80,7 @@ $ git init
 
 ## Watch someone's repository
 誰かのレポジトリをwatchして、どんな風に使ってみるか見てみる。
+
 素敵なレポジトリを見つけたらstarしてあげると開発者は喜ぶ、きっと。
 
 ## Clone someone's repository
@@ -89,7 +90,7 @@ $ git init
 $ git clone <url>
 ```
 
-URLは各レポジトリ画面の右下にある。
+`<url>`は各レポジトリ画面の右下にある。
 gitやhttps、sshなど様々なプロトコルを選べるけど、基本的にどれでもいい。
 その下にある"Clone in Desktop"はGitHub謹製のGUIアプリ経由で使う場合。
 "Download ZIP"はgit cloneでなく、単にファイルとして欲しい時(gitをインストールしてない環境で、とりあえず見てみたい時など)に使う。
@@ -97,7 +98,9 @@ gitやhttps、sshなど様々なプロトコルを選べるけど、基本的に
 ## Push your modification
 ローカルで加えた変更点をリモートのレポジトリに反映してみる。
 
-(何らかの変更) → add(to working tree) → → commit(to index) → push(to remote repository) の順。
+```
+{{(何らかの変更) → add(to working tree)}を何回か繰り返してから → commit(to index)}を何回か繰り返してから → push(to remote repository)。
+```
 
 ### Change something
 なんでも良いから書き換えてみる。revert/reset(元に戻す)できるのがGitの良いところなので、失敗を恐れずに。
@@ -125,8 +128,9 @@ $ git add .
 
 追跡中のファイルたちを*working tree*って言ったり、追跡状態にあることを*staging*って言ったりする。
 
-#### gitignore
+#### .gitignore
 基本的に全部追跡とは言え、追跡してもしょうがないlogファイルとか不可視ファイルもあるので、ignore(無視)設定しておくと良い。
+プロジェクトのルートディレクトリに`.gitignore`を作る。
 
 MacOSXだったら、下記は無視しておくと良い。
 ```shell
@@ -150,10 +154,10 @@ Temporary Items
 
 使用する言語やプラットフォームごとにオススメのgitignoreを検索できる[gitignore.io](https://www.gitignore.io)が便利。
 
-ホームディレクトリ(~/)に.gitignoreってファイルを作れば、すべてのレポジトリで当該ファイルを無視してくれる。
+ホームディレクトリ(に`~/.gitignore`ってファイルを作れば、すべてのレポジトリで当該ファイルを無視してくれる。
 
-#### gitconfig
-gitignoreの話をしたので、ついでにgitconfigも。
+#### .gitconfig
+.gitignoreの話をしたので、ついでに.gitconfigも。
 
 CUIから追記するには…
 ```shell
@@ -162,7 +166,7 @@ $ git config --global user.email <email>
 
 ```
 
-~/.gitconfigに直接書いてもOK。
+`~/.gitconfig`に直接書いてもOK。
 
 ```shell
 [user]
@@ -181,7 +185,7 @@ $ git config --global user.email <email>
   excludesfile = ~/.gitignore
 ```
 
-この設定をしておかないと`commit`できないので注意。
+名前とメールアドレスを設定しておかないと`commit`できないので注意。
 
 ### Commit!
 変更追跡するファイルを追加(= staging)したら、実際に変更点をまとめて*index*に追加する。
@@ -190,7 +194,7 @@ $ git config --global user.email <email>
 $ git commit -m "<comment>"
 ```
 
-*<comment>* のところで変更内容を具体的に書いておく。
+`<comment>`のところで変更内容を具体的に書いておく。
 どんなタイミングでcommitするかは後述。
 
 cf. http://qiita.com/ken_c_lo/items/4cb49f0fb74e8778804d
@@ -202,7 +206,7 @@ cf. http://qiita.com/ken_c_lo/items/4cb49f0fb74e8778804d
 $ git push origin master
 ```
 
-`origin`と`master`が何を意味するかは後述。
+`origin`と`master`が何を意味するかは[後述](#add-remote-repository)。
 
 #### Add remote repository
 cloneしてないレポジトリの場合、そもそもリモートレポジトリがどこにあるか教えてあげないといけない。
@@ -226,8 +230,8 @@ $ git pull origin master
 この時、conflict(衝突)することがあるけど、その原因や解決方法については[後述](#marge-modifications)。
 
 ## Make(& change) branches
-gitの機能として、本流とわけて試したいときなどはbranchを切って、独自の開発路線を作っていくことができます。
-最初は`master`というbranch上で開発をしているので、本流=`master`という理解でOK。
+gitの機能として、本流とは分けて試したいときなどはbranchを切って、独自の開発路線を作っていくことができます。
+レポジトリを作ると`master`というbranchが必ずできるので、本流=`master`という理解でOK。
 
 ```shell
 $ git checkout -b <branchename>
@@ -243,6 +247,11 @@ branchを分けるとややこしくなると言えばややこしくなるの�
 $ git checkout
 ```
 とすると、今、自分がいるbranchが表示されるので適宜確認。
+
+```shell
+$ git branch
+```
+とすると、レポジトリにどんなbranchがあるか一覧できる。
 
 基本的に、branchが違えば何をしてもOKなので、うまくいくかわかんない時や試してみたい時には積極的にbranchを切る。
 その後、うまく行った場合には後述するmarge作業をして、本流に反映する。
@@ -393,6 +402,8 @@ Date:   Wed Aug 13 11:36:26 2014 -0700
     +  default = tracking
 ```
 
+簡単に`commit`できる一方で、ソースを読まないと変更内容がわかりにくくなるので乱用注意。
+
 ## Learn flow
 ここまででGitの基本的なコマンドは習得したので、これらを実践的に組み合わせてみる。
 
@@ -465,8 +476,8 @@ developやreleaseを作らずに簡素化。
 
 1. レポジトリをcloneする
 1. 開発する機能を決める(ex. submitボタンを付ける)
-1. わかりやすい名前でbranchを切る(ex. feature_make_submit_button)
-  - 機能なら"feature"、修正なら"hotfix"を付けて、アンダースコアでつないだ簡単な英文
+1. わかりやすい名前でbranchを切る(ex. feat_make_submit_button)
+  - 機能なら"feat"、修正なら"hotfix"を付けて、アンダースコアでつないだ簡単な英文
 1. 開発する
 1. 開発が終わって、テストも通ることを確認する
 1. commitする
@@ -474,6 +485,8 @@ developやreleaseを作らずに簡素化。
 1. Pull Requestを送る
   - Pull Requestを受け取った管理者はコードレビューしてmerge、問題なかったらbranchを削除
 1. 次の開発(or 修正)へ…
+
+※ 2017/11/16追記: 最近の社内ではGitHubのIssues機能なども連携することが推奨されるようになりました。
 
 ## Make Pull Request
 GitHubの肝。とは言え、forkしないPull Requestは簡単。

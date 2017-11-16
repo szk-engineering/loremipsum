@@ -3,7 +3,6 @@ sinatra setup on MacOSX
 
 > LastModified: 2015-03-10
 
-[TOC]
 
 ## Abstrat
 GitHub LectureのためにちょっとしたWebアプリを対象にしながらWorkFlowの理解を進めていきたい．
