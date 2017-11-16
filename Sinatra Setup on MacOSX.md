@@ -1,8 +1,26 @@
 sinatra setup on MacOSX
 ========
 
-> LastModified: 2015-03-10
+> LastModified: 2017-11-16
 
+<!-- TOC depthFrom:2 depthTo:6 withLinks:1 updateOnSave:1 orderedList:0 -->
+
+- [Abstrat](#abstrat)
+- [install HomeBrew](#install-homebrew)
+	- [brew update & doctor](#brew-update-doctor)
+- [install rbenv & ruby-build](#install-rbenv-ruby-build)
+- [setup gem](#setup-gem)
+	- [.gemrc](#gemrc)
+	- [update gem](#update-gem)
+- [install bundler](#install-bundler)
+- [Make a Web application with Sinatra](#make-a-web-application-with-sinatra)
+- [Run!](#run)
+- [Deploy to Heroku](#deploy-to-heroku)
+- [Test](#test)
+- [Make a feature](#make-a-feature)
+- [Cycle](#cycle)
+
+<!-- /TOC -->
 
 ## Abstrat
 GitHub LectureのためにちょっとしたWebアプリを対象にしながらWorkFlowの理解を進めていきたい．
@@ -100,7 +118,7 @@ $ sudo gem install bundler
 
 無事にインストールできたかな？
 
-# Make a Web application with Sinatra
+## Make a Web application with Sinatra
 
 // TODO: write details about make
 
@@ -108,7 +126,7 @@ $ sudo gem install bundler
 $ bundle install --path vendor/bundle --without production
 ```
 
-# Run!
+## Run!
 
 // TODO: write details about run
 
@@ -120,7 +138,7 @@ $ sudo gem install foreman
 $ foreman start
 ```
 
-# Deploy to Heroku
+## Deploy to Heroku
 
 ```shell
 $ brew install heroku-toolbelt
@@ -130,14 +148,14 @@ $ brew install heroku-toolbelt
 
 > heroku create
 
-# Test
+## Test
 
 // TODO: write details about test
 
-# Make a feature
+## Make a feature
 
 // TODO: write details about feature
 
-# Cycle
+## Cycle
 
 // TODO: write details about cycle
