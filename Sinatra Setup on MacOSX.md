@@ -52,7 +52,7 @@ $ brew install rbenv
 $ brew install ruby-build
 ```
 
-インストールが終わったら，.zprofile(zshの場合)に「rbenvのrootディレクトリは"/usr/local/var/rbenv"で，そのディレクトリが存在してたら起動毎にinitスクリプトを実行してー」って内容を追記する．(cf. https://github.com/shin-szk-engineering/dotfiles/blob/master/zprofile.mac)
+インストールが終わったら，.zprofile(zshの場合)に「rbenvのrootディレクトリは"/usr/local/var/rbenv"で，そのディレクトリが存在してたら起動毎にinitスクリプトを実行してー」って内容を追記する．(cf. https://github.com/shin-sforzando/dotfiles/blob/master/zprofile.mac)
 
 ```shell
 # rbenv

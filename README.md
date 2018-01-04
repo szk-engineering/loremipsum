@@ -1,10 +1,10 @@
-LoremIpsum (GitHub Lecture for szk-engineering)
+LoremIpsum (GitHub Lecture for sforzando LLC.(ex szk-engineering))
 ==========
 社内研修用。
 
 GitとGitHubのさわりだけ。
 
-> LastModified: 2017-11-16 [![Build Status](https://travis-ci.org/szk-engineering/loremipsum.svg?branch=master)](https://travis-ci.org/szk-engineering/loremipsum)
+> LastModified: 2017-11-16
 
 <!-- TOC depthFrom:2 depthTo:6 withLinks:1 updateOnSave:1 orderedList:0 -->
 
