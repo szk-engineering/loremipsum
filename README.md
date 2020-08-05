@@ -1,62 +1,60 @@
-LoremIpsum (GitHub Lecture for sforzando LLC.(ex szk-engineering))
-==========
+# LoremIpsum (GitHub Lecture for sforzando LLC.(ex szk-engineering))
+
 社内研修用。
 
 GitとGitHubのさわりだけ。
 
 > LastModified: 2017-11-16
 
-<!-- TOC depthFrom:2 depthTo:6 withLinks:1 updateOnSave:1 orderedList:0 -->
-
 - [Make GitHub Account](#make-github-account)
-	- [Register your SSH key](#register-your-ssh-key)
+  - [Register your SSH key](#register-your-ssh-key)
 - [Make own repository](#make-own-repository)
 - [Watch someone's repository](#watch-someones-repository)
 - [Clone someone's repository](#clone-someones-repository)
 - [Push your modification](#push-your-modification)
-	- [Change something](#change-something)
-		- [Markdown environment](#markdown-environment)
-		- [GitHub Flavored Markdown](#github-flavored-markdown)
-	- ["Add" your modification](#add-your-modification)
-		- [.gitignore](#gitignore)
-		- [.gitconfig](#gitconfig)
-	- [Commit!](#commit)
-	- [Push your modification](#push-your-modification)
-		- [Add remote repository](#add-remote-repository)
+  - [Change something](#change-something)
+    - [Markdown environment](#markdown-environment)
+    - [GitHub Flavored Markdown](#github-flavored-markdown)
+  - ["Add" your modification](#add-your-modification)
+    - [.gitignore](#gitignore)
+    - [.gitconfig](#gitconfig)
+  - [Commit!](#commit)
+  - [Push your modification](#push-your-modification-1)
+    - [Add remote repository](#add-remote-repository)
 - [Pull our modification](#pull-our-modification)
 - [Make(& change) branches](#make-change-branches)
-	- [Change branches](#change-branches)
+  - [Change branches](#change-branches)
 - [Marge modifications](#marge-modifications)
-- [その他のよく使うGitコマンド](#他使git)
-	- [mv / rm](#mv-rm)
-	- [diff](#diff)
-	- [status](#status)
-	- [log](#log)
-	- [shortlog](#shortlog)
-		- [log --graph](#log-graph)
-		- [git now](#git-now)
+- [その他のよく使うGitコマンド](#その他のよく使うgitコマンド)
+  - [mv / rm](#mv--rm)
+  - [diff](#diff)
+  - [status](#status)
+  - [log](#log)
+  - [shortlog](#shortlog)
+    - [log --graph](#log---graph)
+    - [git now](#git-now)
 - [Learn flow](#learn-flow)
-	- [Git Flow as reference](#git-flow-as-reference)
-		- [Git Flow: ポリシー](#git-flow-)
-		- [Git Flow: branchの分け方](#git-flow-branch分方)
-		- [Git Flow: 利点](#git-flow-利点)
-		- [Git Flow: 注意点](#git-flow-注意点)
-	- [GitHub Flow and szk-engineering's Flow](#github-flow-and-szk-engineerings-flow)
-	- [szk-engineering's Flow: ポリシー](#szk-engineerings-flow-)
-	- [szk-engineering's Flow: branchの分け方](#szk-engineerings-flow-branch分方)
-	- [szk-engineering's Flow: 実際の流れ](#szk-engineerings-flow-実際流)
+  - [Git Flow as reference](#git-flow-as-reference)
+    - [Git Flow: ポリシー](#git-flow-ポリシー)
+    - [Git Flow: branchの分け方](#git-flow-branchの分け方)
+    - [Git Flow: 利点](#git-flow-利点)
+    - [Git Flow: 注意点](#git-flow-注意点)
+  - [GitHub Flow and szk-engineering's Flow](#github-flow-and-szk-engineerings-flow)
+  - [szk-engineering's Flow: ポリシー](#szk-engineerings-flow-ポリシー)
+  - [szk-engineering's Flow: branchの分け方](#szk-engineerings-flow-branchの分け方)
+  - [szk-engineering's Flow: 実際の流れ](#szk-engineerings-flow-実際の流れ)
 - [Make Pull Request](#make-pull-request)
 - [Try surrounding services](#try-surrounding-services)
-	- [Travis CI](#travis-ci)
-	- [Heroku](#heroku)
-	- [Hubot](#hubot)
-
-<!-- /TOC -->
+  - [Travis CI](#travis-ci)
+  - [Heroku](#heroku)
+  - [Hubot](#hubot)
 
 ## Make GitHub Account
+
 何はともあれ、はじめにGitHubのアカウントを作ります。
 
 ### Register your SSH key
+
 アカウントを作ったら、公開鍵を登録します。
 
 ローカル環境の`~/.ssh/config`もこんな感じで変更しておくと良いかも。
@@ -72,6 +70,7 @@ Host github-private
 ```
 
 ## Make own repository
+
 自分のアカウントでレポジトリを作ってみる。
 
 ```shell
@@ -79,11 +78,13 @@ $ git init
 ```
 
 ## Watch someone's repository
+
 誰かのレポジトリをwatchして、どんな風に使ってみるか見てみる。
 
 素敵なレポジトリを見つけたらstarしてあげると開発者は喜ぶ、きっと。
 
 ## Clone someone's repository
+
 誰かのレポジトリをローカルにcloneしてみる。
 
 ```shell
@@ -96,6 +97,7 @@ gitやhttps、sshなど様々なプロトコルを選べるけど、基本的に
 "Download ZIP"はgit cloneでなく、単にファイルとして欲しい時(gitをインストールしてない環境で、とりあえず見てみたい時など)に使う。
 
 ## Push your modification
+
 ローカルで加えた変更点をリモートのレポジトリに反映してみる。
 
 ```
@@ -103,14 +105,17 @@ gitやhttps、sshなど様々なプロトコルを選べるけど、基本的に
 ```
 
 ### Change something
+
 なんでも良いから書き換えてみる。revert/reset(元に戻す)できるのがGitの良いところなので、失敗を恐れずに。
 とは言え、README.mdを書き換えるのが一番手ごろ。
 
 #### Markdown environment
+
 README.md(Markdown)ファイルをいじるのにおすすめの環境は…
 
 * Sublime Text 3
 * Atom
+* Visual Studio Code
 
 #### GitHub Flavored Markdown
 GitHubで使えるMarkdown特殊記法も使いこなせるとかっこいい。
