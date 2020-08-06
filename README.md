@@ -170,7 +170,6 @@ CUIから追記するには…
 ```shell
 $ git config --global user.name <username>
 $ git config --global user.email <email>
-
 ```
 
 `~/.gitconfig`に直接書いてもOK。
@@ -235,6 +234,11 @@ $ git pull origin master
 
 `master`が何を意味するかは[後述](#make-change-branches)。
 この時、conflict(衝突)することがあるけど、その原因や解決方法については[後述](#marge-modifications)。
+
+`git pull` git fetchとgit mergeを同時に行うコマンドです。
+`git-pull` : 他のリポジトリやローカルブランチから取得して統合します。
+`git-fetch` : 他のリポジトリからオブジェクトと参照をダウンロードします。
+`git-merge` : 2つ以上の開発履歴を結合します。
 
 ## Make(& change) branches
 gitの機能として、本流とは分けて試したいときなどはbranchを切って、独自の開発路線を作っていくことができます。
