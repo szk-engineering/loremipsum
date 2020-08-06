@@ -6,48 +6,50 @@ GitとGitHubのさわりだけ。
 
 > LastModified: 2017-11-16
 
-- [Make GitHub Account](#make-github-account)
-  - [Register your SSH key](#register-your-ssh-key)
-- [Make own repository](#make-own-repository)
-- [Watch someone's repository](#watch-someones-repository)
-- [Clone someone's repository](#clone-someones-repository)
-- [Push your modification](#push-your-modification)
-  - [Change something](#change-something)
-    - [Markdown environment](#markdown-environment)
-    - [GitHub Flavored Markdown](#github-flavored-markdown)
-  - ["Add" your modification](#add-your-modification)
-    - [.gitignore](#gitignore)
-    - [.gitconfig](#gitconfig)
-  - [Commit!](#commit)
-  - [Push your modification](#push-your-modification-1)
-    - [Add remote repository](#add-remote-repository)
-- [Pull our modification](#pull-our-modification)
-- [Make(& change) branches](#make-change-branches)
-  - [Change branches](#change-branches)
-- [Marge modifications](#marge-modifications)
-- [その他のよく使うGitコマンド](#その他のよく使うgitコマンド)
-  - [mv / rm](#mv--rm)
-  - [diff](#diff)
-  - [status](#status)
-  - [log](#log)
-  - [shortlog](#shortlog)
-    - [log --graph](#log---graph)
-    - [git now](#git-now)
-- [Learn flow](#learn-flow)
-  - [Git Flow as reference](#git-flow-as-reference)
-    - [Git Flow: ポリシー](#git-flow-ポリシー)
-    - [Git Flow: branchの分け方](#git-flow-branchの分け方)
-    - [Git Flow: 利点](#git-flow-利点)
-    - [Git Flow: 注意点](#git-flow-注意点)
-  - [GitHub Flow and szk-engineering's Flow](#github-flow-and-szk-engineerings-flow)
-  - [szk-engineering's Flow: ポリシー](#szk-engineerings-flow-ポリシー)
-  - [szk-engineering's Flow: branchの分け方](#szk-engineerings-flow-branchの分け方)
-  - [szk-engineering's Flow: 実際の流れ](#szk-engineerings-flow-実際の流れ)
-- [Make Pull Request](#make-pull-request)
-- [Try surrounding services](#try-surrounding-services)
-  - [Travis CI](#travis-ci)
-  - [Heroku](#heroku)
-  - [Hubot](#hubot)
+- [LoremIpsum (GitHub Lecture for sforzando LLC.(ex szk-engineering))](#loremipsum-github-lecture-for-sforzando-llcex-szk-engineering)
+  - [Make GitHub Account](#make-github-account)
+    - [Register your SSH key](#register-your-ssh-key)
+  - [Make own repository](#make-own-repository)
+  - [Watch someone's repository](#watch-someones-repository)
+  - [Clone someone's repository](#clone-someones-repository)
+  - [Push your modification](#push-your-modification)
+    - [Change something](#change-something)
+      - [Markdown environment](#markdown-environment)
+      - [GitHub Flavored Markdown](#github-flavored-markdown)
+    - ["Add" your modification](#add-your-modification)
+      - [.gitignore](#gitignore)
+      - [.gitconfig](#gitconfig)
+    - [Commit!](#commit)
+    - [Push your modification](#push-your-modification-1)
+      - [Add remote repository](#add-remote-repository)
+  - [Pull our modification](#pull-our-modification)
+  - [Make(& change) branches](#make-change-branches)
+    - [Change branches](#change-branches)
+  - [Marge modifications](#marge-modifications)
+  - [その他のよく使うGitコマンド](#その他のよく使うgitコマンド)
+    - [mv / rm](#mv--rm)
+    - [diff](#diff)
+    - [status](#status)
+    - [log](#log)
+    - [shortlog](#shortlog)
+      - [log --graph](#log---graph)
+      - [git now](#git-now)
+  - [Learn flow](#learn-flow)
+    - [Git Flow as reference](#git-flow-as-reference)
+      - [Git Flow: ポリシー](#git-flow-ポリシー)
+      - [Git Flow: branchの分け方](#git-flow-branchの分け方)
+      - [Git Flow: 利点](#git-flow-利点)
+      - [Git Flow: 注意点](#git-flow-注意点)
+    - [GitHub Flow and szk-engineering's Flow](#github-flow-and-szk-engineerings-flow)
+    - [szk-engineering's Flow: ポリシー](#szk-engineerings-flow-ポリシー)
+    - [szk-engineering's Flow: branchの分け方](#szk-engineerings-flow-branchの分け方)
+    - [szk-engineering's Flow: 実際の流れ](#szk-engineerings-flow-実際の流れ)
+  - [Make Pull Request](#make-pull-request)
+  - [Try surrounding services](#try-surrounding-services)
+    - [Travis CI](#travis-ci)
+    - [Heroku](#heroku)
+    - [Hubot](#hubot)
+- [Remarks](#remarks)
 
 ## Make GitHub Account
 
@@ -113,9 +115,9 @@ gitやhttps、sshなど様々なプロトコルを選べるけど、基本的に
 
 README.md(Markdown)ファイルをいじるのにおすすめの環境は…
 
-* Sublime Text 3
-* Atom
-* Visual Studio Code
+- Sublime Text 3
+- Atom
+- Visual Studio Code
 
 #### GitHub Flavored Markdown
 GitHubで使えるMarkdown特殊記法も使いこなせるとかっこいい。
@@ -418,60 +420,60 @@ git-flowという「こうやるとうまくいくよ」という手法がある
 
 #### Git Flow: ポリシー
 
-* *master*に直接変更を加えない
+- *master*に直接変更を加えない
   - すべての変更は事前にbranchを切ってから、それをmargeする形で*master*に反映していく
-* *master*は完動する状態以外許さない
+- *master*は完動する状態以外許さない
   - *master*はいつでも本番環境にdeployして良いようにしておく
-* 各branchへのcommitもテストを通ったものしか許さない
+- 各branchへのcommitもテストを通ったものしか許さない
   - ただ変更しましたーって言うcommitはしない
 
 #### Git Flow: branchの分け方
 
-* master
+- master
   - 大元締め、常に配備可能なバグのないbranch、開発者は直接さわってはいけない
-* develop
+- develop
   - 開発するためのbranch、ここからfeatureを切り分ける
-* feature
+- feature
   - 直訳すれば"機能"、developからbranchして、ある一つの機能を実装するために使う
-* release
+- release
   - featureが何個かまとまって、release(公開)するためにドキュメントの整備などを行うbranch
-* hotfix
+- hotfix
   - 発見された不具合を修正するために切るbranch、たいていはmasterから切り出す
 
 #### Git Flow: 利点
 
-* commitログがすっきりして変更履歴を追いやすい
-* branchごとに担当者が分けやすくて管理しやすい
-* branchごとに何をしなければいけないか明確化されてて作業しやすい
-* masterはいつでも動くという安心感
+- commitログがすっきりして変更履歴を追いやすい
+- branchごとに担当者が分けやすくて管理しやすい
+- branchごとに何をしなければいけないか明確化されてて作業しやすい
+- masterはいつでも動くという安心感
 
 #### Git Flow: 注意点
 
-* 変更履歴は追いやすいけど、進行中の作業は追いにくい
-* branch切ったりmargeしたりする回数が増えて、正直めんどい
-* テストを自動化しておかないと回せない
-* 小規模な開発や実験的な開発で適応するといちいちcommitしにくくて困る
+- 変更履歴は追いやすいけど、進行中の作業は追いにくい
+- branch切ったりmargeしたりする回数が増えて、正直めんどい
+- テストを自動化しておかないと回せない
+- 小規模な開発や実験的な開発で適応するといちいちcommitしにくくて困る
 
 ### GitHub Flow and szk-engineering's Flow
 Git Flowは大げさすぎるので、GitHubを使ってGit Flowっぽいことをもうちょっと楽にやろう、っていうか、更にそれを改良して、szk-engineering流はこんな感じだよ。
 
 ### szk-engineering's Flow: ポリシー
 
-* *master*には直接変更を加えない(= *Git Flow*と一緒)
+- *master*には直接変更を加えない(= *Git Flow*と一緒)
   - 変更前にbranchを切って、完成(= テストが通る)したら*Pull Request*(後述する)を送る
   - *Pull Request*を受けたら、mergeする前にコードレビューする
-* *master*は完動する状態を保つ(= *Git Flow*と一緒)
+- *master*は完動する状態を保つ(= *Git Flow*と一緒)
   - *master*はいつでも本番環境にdeployして良いようにしておく
-* branch切ったらcommitは適当でOK。
+- branch切ったらcommitは適当でOK。
 
 ### szk-engineering's Flow: branchの分け方
 
-* master
+- master
   - 大元締め、常に配備可能なバグのないbranch、開発者は直接さわってはいけない(= *Git Flow*と一緒)
-* feature
+- feature
   - 開発するためのbranch、1機能ずつ切り出す
   - *Git Flow*とちがって、masterから切り出す(= developは作らない)
-* hotfix
+- hotfix
   - 修正するためのbranch、1バグずつ切り出す
   - masterから切り出す
 
@@ -522,13 +524,13 @@ https://www.heroku.com
 ### Hubot
 GitHub謹製の人工無能(?)。いや、かなり有能かも。
 
-* 発言に含まれるURLのタイトルを表示
-* TwitterのURLから発言内容を表示
-* ミーティング時間の通知
-* サーバの負荷が上がった場合に通知
-* GitHubのリポジトリにpull requestが送られた場合に通知
-* Jenkinsでのビルドの失敗時にエラーを通知
-* デプロイの実行
+- 発言に含まれるURLのタイトルを表示
+- TwitterのURLから発言内容を表示
+- ミーティング時間の通知
+- サーバの負荷が上がった場合に通知
+- GitHubのリポジトリにpull requestが送られた場合に通知
+- Jenkinsでのビルドの失敗時にエラーを通知
+- デプロイの実行
 
 # Remarks
 間違いとかあったら教えてください。
