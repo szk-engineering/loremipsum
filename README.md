@@ -233,6 +233,8 @@ $ git pull origin master
 `master`が何を意味するかは[後述](#make-change-branches)。
 この時、conflict(衝突)することがあるけど、その原因や解決方法については[後述](#marge-modifications)。
 
+`pull` = `fetch` + `merge` であることを意識する。
+
 ## Make(& change) branches
 gitの機能として、本流とは分けて試したいときなどはbranchを切って、独自の開発路線を作っていくことができます。
 レポジトリを作ると`master`というbranchが必ずできるので、本流=`master`という理解でOK。
