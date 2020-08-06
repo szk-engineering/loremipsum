@@ -59,7 +59,7 @@ GitとGitHubのさわりだけ。
 
 アカウントを作ったら、公開鍵を登録します。
 
-ローカル環境の`~/.ssh/config`もこんな感じで変更しておくと良いかも。
+ローカル環境の `~/.ssh/config` もこんな感じで変更しておくと良いかも。
 
 ```shell
 Host github-private
@@ -93,7 +93,7 @@ $ git init
 $ git clone <url>
 ```
 
-`<url>`は各レポジトリ画面の右下にある。
+ `<url>` は各レポジトリ画面の右下にある。
 gitやhttps、sshなど様々なプロトコルを選べるけど、基本的にどれでもいい。
 その下にある"Clone in Desktop"はGitHub謹製のGUIアプリ経由で使う場合。
 "Download ZIP"はgit cloneでなく、単にファイルとして欲しい時(gitをインストールしてない環境で、とりあえず見てみたい時など)に使う。
@@ -137,7 +137,7 @@ $ git add .
 
 #### .gitignore
 基本的に全部追跡とは言え、追跡してもしょうがないlogファイルとか不可視ファイルもあるので、ignore(無視)設定しておくと良い。
-プロジェクトのルートディレクトリに`.gitignore`を作る。
+プロジェクトのルートディレクトリに `.gitignore` を作る。
 
 MacOSXだったら、下記は無視しておくと良い。
 ```shell
@@ -161,7 +161,7 @@ Temporary Items
 
 使用する言語やプラットフォームごとにオススメのgitignoreを検索できる[gitignore.io](https://www.gitignore.io)が便利。
 
-ホームディレクトリ(に`~/.gitignore`ってファイルを作れば、すべてのレポジトリで当該ファイルを無視してくれる。
+ホームディレクトリ(に `~/.gitignore`  ってファイルを作れば、すべてのレポジトリで当該ファイルを無視してくれる。
 
 #### .gitconfig
 .gitignoreの話をしたので、ついでに.gitconfigも。
@@ -173,7 +173,7 @@ $ git config --global user.email <email>
 
 ```
 
-`~/.gitconfig`に直接書いてもOK。
+ `~/.gitconfig` に直接書いてもOK。
 
 ```shell
 [user]
@@ -192,7 +192,7 @@ $ git config --global user.email <email>
   excludesfile = ~/.gitignore
 ```
 
-名前とメールアドレスを設定しておかないと`commit`できないので注意。
+名前とメールアドレスを設定しておかないと `commit` できないので注意。
 
 ### Commit!
 変更追跡するファイルを追加(= staging)したら、実際に変更点をまとめて*index*に追加する。
@@ -201,7 +201,7 @@ $ git config --global user.email <email>
 $ git commit -m "<comment>"
 ```
 
-`<comment>`のところで変更内容を具体的に書いておく。
+ `<comment>` のところで変更内容を具体的に書いておく。
 どんなタイミングでcommitするかは後述。
 
 cf. http://qiita.com/ken_c_lo/items/4cb49f0fb74e8778804d
@@ -213,7 +213,7 @@ cf. http://qiita.com/ken_c_lo/items/4cb49f0fb74e8778804d
 $ git push origin master
 ```
 
-`origin`と`master`が何を意味するかは[後述](#add-remote-repository)。
+ `origin` と `master` が何を意味するかは[後述](#add-remote-repository)。
 
 #### Add remote repository
 cloneしてないレポジトリの場合、そもそもリモートレポジトリがどこにあるか教えてあげないといけない。
@@ -222,9 +222,9 @@ cloneしてないレポジトリの場合、そもそもリモートレポジト
 $ git remote add <name> <url>
 ```
 
-`<name>`が前述の`origin`に相当します。
+ `<name>` が前述の `origin` に相当します。
 1つのローカルレポジトリが複数のリモートレポジトリを見ることもできるので、ニックネームをつけていると考えればOK。
-GitHubなら`github`にするとか、自分にしか見えないところなのでわかりやすく自由に。
+GitHubなら `github` にするとか、自分にしか見えないところなのでわかりやすく自由に。
 
 ## Pull our modification
 他の人が加えた変更点を自分のローカルに反映するとき。
@@ -233,19 +233,19 @@ GitHubなら`github`にするとか、自分にしか見えないところなの
 $ git pull origin master
 ```
 
-`master`が何を意味するかは[後述](#make-change-branches)。
+ `master` が何を意味するかは[後述](#make-change-branches)。
 この時、conflict(衝突)することがあるけど、その原因や解決方法については[後述](#marge-modifications)。
 
 ## Make(& change) branches
 gitの機能として、本流とは分けて試したいときなどはbranchを切って、独自の開発路線を作っていくことができます。
-レポジトリを作ると`master`というbranchが必ずできるので、本流=`master`という理解でOK。
+レポジトリを作ると `master` というbranchが必ずできるので、本流= `master` という理解でOK。
 
 ```shell
 $ git checkout -b <branchename>
 ```
 
-`-b`オプションを付けることで、`branchname`というbranchを作成しながら、`branchname`での作業を開始できます。
-なので、既に作成してあるbranchに移る場合は`-b`は不要。
+ `-b` オプションを付けることで、 `branchname` というbranchを作成しながら、 `branchname` での作業を開始できます。
+なので、既に作成してあるbranchに移る場合は `-b` は不要。
 
 ### Change branches
 branchを分けるとややこしくなると言えばややこしくなるので、ここでちょっと整理。
@@ -409,7 +409,7 @@ Date:   Wed Aug 13 11:36:26 2014 -0700
     +  default = tracking
 ```
 
-簡単に`commit`できる一方で、ソースを読まないと変更内容がわかりにくくなるので乱用注意。
+簡単に `commit` できる一方で、ソースを読まないと変更内容がわかりにくくなるので乱用注意。
 
 ## Learn flow
 ここまででGitの基本的なコマンドは習得したので、これらを実践的に組み合わせてみる。
