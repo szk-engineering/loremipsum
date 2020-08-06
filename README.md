@@ -482,6 +482,8 @@ Git Flowは大げさすぎるので、GitHubを使ってGit Flowっぽいこと�
   - masterから切り出す
 
 developやreleaseを作らずに簡素化。
+branchを作る時には必ず名前の先頭に0埋め3桁の数字を入力する。
+e.g. `003_markdown_Notation_Error`
 
 ### szk-engineering's Flow: 実際の流れ
 
