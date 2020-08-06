@@ -168,7 +168,6 @@ CUIから追記するには…
 ```shell
 $ git config --global user.name <username>
 $ git config --global user.email <email>
-
 ```
 
 `~/.gitconfig`に直接書いてもOK。
